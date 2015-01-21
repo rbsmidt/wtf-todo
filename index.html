@@ -1,19 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="wtfTodo" lang="en">
 <head>
   <meta charset="UTF-8">
   <title>WTF Todo ?!</title>
   <link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css" />
   <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css" />
   <link rel="stylesheet" href="assets/css/main.css">
+  <base href="/www/wtf-todo/">
 </head>
-<body>
+<body ng-controller="mainController">
+  <nav>
+    <ul class="list-inline">
+      <li><a href="#/">home</a></li>
+      <li><a href="#about">about</a></li>
+    </ul>
+  </nav>
   <h1>WTF Todo?</h1>
+  <main id="main">
+    <div ng-view></div>
+  </main>
 
 
   <script src="libs/angular/angular.js"></script>
+  <script src="libs/angular/angular.route.js"></script>
   <script src="libs/jquery/jquery.min.js"></script>
   <script src="libs/bootstrap/bootstrap.min.js"></script>
+
+  <script src="https://cdn.firebase.com/js/client/2.1.0/firebase.js"></script>
+  <script src="libs/angularfire/angularfire.min.js"></script>
 
   <script src="app/app.js"></script>
   <script src="app/controllers.js"></script>
