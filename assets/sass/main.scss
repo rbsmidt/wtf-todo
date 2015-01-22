@@ -21,6 +21,13 @@ nav {
   background: $grey;
   ul {
     margin-bottom: 0;
+    a, a:link, a:active, a:visited {
+      text-decoration: underline;
+      color: $black;
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 }
 h1 {

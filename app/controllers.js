@@ -93,3 +93,20 @@ wtfTodo.controller('todoController', function($scope, $firebase, $routeParams){
   }
 
 });
+
+wtfTodo.controller('actionController', function($scope, $firebase, $routeParams){
+  $scope.model = {
+    id: $routeParams.id
+  }
+  var ref = new Firebase('https://wtf-todo.firebaseio.com/data/'+$routeParams.id);
+  var sync = $firebase(ref);
+
+});
+wtfTodo.controller('resultController', function($scope, $firebase, $routeParams){
+  $scope.model = {
+    id: $routeParams.id
+  }
+  var ref = new Firebase('https://wtf-todo.firebaseio.com/data/'+$routeParams.id);
+  var sync = $firebase(ref);
+  
+});

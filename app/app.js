@@ -17,6 +17,14 @@ wtfTodo.config(function($routeProvider, $locationProvider){
       templateUrl: 'app/templates/todo.html',
       controller: 'todoController'
     })
+    .when('/:id/action', {
+      templateUrl: 'app/templates/action.html',
+      controller: 'actionController'
+    })
+    .when('/:id/result', {
+      templateUrl: 'app/templates/result.html',
+      controller: 'resultController'
+    })
     .otherwise({
       templateUrl: 'app/templates/home.html',
       controller: 'mainController'
