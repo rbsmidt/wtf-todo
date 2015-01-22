@@ -5,13 +5,14 @@ wtfTodo.controller('mainController', function($scope, $firebase){
   var sync = $firebase(ref);
 
   $scope.todos = $firebase(ref).$asArray();
-  $scope.newTodo = function(){
-    $scope.todos.$add({todo: '', participants: '', chosen: ''}).then(function(ref){
-      var id = ref.key();
-      console.log('added record with id' + id);
-      location.hash = id;
-    });
-    console.log('new new new', $scope.todos);
+  $scope.newTodo = function(firstName){
+    if(firstName != '') {
+      $scope.todos.$add({todo: '', participants: firstName, chosen: ''}).then(function(ref){
+        var id = ref.key();
+        console.log('added record with id' + id, 'first participant is', firstName, 'database object:', $scope.todos);
+        location.hash = id;
+      });
+    }
   }
 
 });
