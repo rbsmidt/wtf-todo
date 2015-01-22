@@ -17,7 +17,11 @@
   </nav>
   <h1>WTF Todo?</h1>
   <main id="main">
-    <div ng-view></div>
+    <div class="jumbotron text-center">
+      <form ng-submit="todo()">
+        <div ng-view></div>
+      </form>
+    </div>
   </main>
 
 

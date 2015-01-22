@@ -1,12 +1,16 @@
 $background: rgba(255,255,255, 0.98);
+$black: rgba(0,0,0, 0.92);
 $grey: #eee;
-$input-padding: 15px;
+$input-padding: 12px;
+$input-margin: 7.5px 5px;
 $font-family: 'Optima';
+$font-size: 14px;
 
 
 body {
   background: $background;
   font-family: $font-family;
+  font-size: $font-size;
 }
 nav {
   width: 100%;
@@ -22,8 +26,10 @@ h1 {
     right: 15px;
   }
 }
-button {
+a.button {
+  cursor: pointer;
   background: transparent;
+  color: $black;
   border: 0;
   border-radius: 0;
   -webkit-transition: opacity 0.35s;
@@ -37,10 +43,16 @@ button {
     opacity: .5;
   }
 }
-input {
+input, textarea {
+  text-align: center;
+  font-size: 1.2em;
   border: 0;
+  border-bottom: 1px solid $black;
   background: $background;
+  margin: $input-margin;
   padding: $input-padding;
+  box-shadow: none;
+  outline: none;
 }
 
 .jumbotron {

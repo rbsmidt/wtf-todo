@@ -1,25 +1,3 @@
-<div class="jumbotron text-center">
-  <h2>Yeah</h2>
+<h2>Yeah</h2>
   <p>{{ message }}</p>
-  <form ng-submit="todo()">
-    <input type="text" name="creator" ng-model="firstName" placeholder="My name is ..." />
-    <button type="button" ng-click="showTodo = !showTodo; newTodo(firstName)">
-      <span class="fa-stack fa-2x">
-        <i class="fa fa-square fa-stack-2x"></i>
-        <i class="fa fa-plus fa-stack-1x fa-inverse" ng-show="!showTodo"></i>
-        <i class="fa fa-minus fa-stack-1x fa-inverse" ng-show="showTodo"></i>
-      </span>
-    </button>
-    <input type="text" name="participant" ng-show="showTodo" ng-model="participant" placeholder="Participant 1..." />
-    <button type="button" ng-show="showTodo" ng-click="">
-      <span class="fa-stack fa-2x">
-        <i class="fa fa-square fa-stack-2x"></i>
-        <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
-      </span>
-    </button>
-  </form>
-
-  <!-- <form ng-submit="newTodo()">
-    <button type="submit" class="btn btn-start">Let's decide!</button>
-  </form> -->
-</div>
+  <creator></creator>
