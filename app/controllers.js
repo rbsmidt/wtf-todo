@@ -7,7 +7,7 @@ wtfTodo.controller('mainController', function($scope, $firebase, $routeParams, $
   $scope.todos = sync.$asArray();
   $scope.newTodo = function(firstName){
     if(firstName !== undefined) {
-      $scope.todos.$add({todo: '', participants: firstName, chosen: ''}).then(function(ref){
+      $scope.todos.$add({todo: '', participants: [firstName], chosen: ''}).then(function(ref){
         var id = ref.key();
         console.log('added record with id' + id, 'first participant is', firstName, 'database object:', $scope.todos);
         $location.url('/'+id);
@@ -25,7 +25,7 @@ wtfTodo.controller('aboutController', function($scope){
 
 wtfTodo.controller('todoController', function($scope, $firebase, $routeParams){
   $scope.welcome = 'We are ';
-  $scope.and = 'and...';
+  $scope.todoMessage = 'One of us is ';
   $scope.model = {
     id: $routeParams.id
   }
@@ -48,9 +48,48 @@ wtfTodo.controller('todoController', function($scope, $firebase, $routeParams){
       $scope.todos.participants = part;
       $scope.todos.$save().then(function(ref){
         console.log('saved', $scope.todos);
+        $scope.newPart = '';
       });
     } else {
       $scope.error = 'Please fill in the participant name'
     }
+  };
+
+  $scope.removeParticipant = function(participant, key) {
+    console.log('participant', participant, 'todos', $scope.todos, 'key', key);
+    part = $scope.todos.participants;
+    if(angular.isArray(part)) {
+      part.splice([key], 1);
+      console.log('part er spliced', part);
+    } else {
+      part = '';
+    }
+    $scope.todos.participants = part;
+    $scope.todos.$save().then(function(ref){
+      console.log('removed and saved', $scope.todos);
+    });
   }
+
+  $scope.isLast = function(check) {
+    var cssClass = check ? 'last' : null;
+    return cssClass;
+  };
+
+  $scope.result = function(todoAction) {
+    console.log('todo action:', todoAction);
+    $scope.todos.todo = todoAction;
+    $scope.todos.$save().then(function(ref){
+      console.log('action saved', $scope.todos, ' calculating result');
+      var length = $scope.todos.participants.length;
+      participants = $scope.todos.participants;
+      $scope.chosen = participants[Math.floor(Math.random()*length)];
+      $scope.todos.chosen = $scope.chosen;
+      $scope.action = $scope.todos.todo;
+      $scope.todos.$save().then(function(ref){
+        console.log('result calculated and saved, the chosen was');
+        //$scope.todoAction = '';
+      });
+    });
+  }
+
 });
