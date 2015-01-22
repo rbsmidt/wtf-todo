@@ -1,0 +1,14 @@
+<h3>{{welcome}}</h3>
+<div ng-repeat="part in todos.participants">
+  <input type="text" name="participant" ng-model="participant" placeholder="{{part}}" />
+  <a class="button" ng-click="newParticipant(participant)">
+    <span class="fa-stack fa-2x">
+      <i class="fa fa-square fa-stack-2x"></i>
+      <i class="fa fa-minus fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+  <p ng-if="">{{and}}</p>
+</div>
+<div class="add-participant">
+  <button type="button">And {{todos.participants.length}}</button>
+</div>

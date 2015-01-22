@@ -1,0 +1,9 @@
+<span>{{welcome}}</span><input type="text" name="creator" ng-model="firstName" placeholder="..." />
+    <a class="button" ng-click="newTodo(firstName)">
+      <span class="fa-stack fa-2x">
+        <i class="fa fa-square fa-stack-2x"></i>
+        <i class="fa fa-plus fa-stack-1x fa-inverse" ng-show="!showTodo"></i>
+        <i class="fa fa-minus fa-stack-1x fa-inverse" ng-show="showTodo"></i>
+      </span>
+    </a>
+    <p>{{error}}</p>
