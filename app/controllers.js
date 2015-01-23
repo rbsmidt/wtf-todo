@@ -17,21 +17,30 @@ wtfTodo.controller('mainController', function($scope, $firebase, $routeParams, $
       $scope.error = 'Please fill in your name!';
     }
   }
+  $scope.onBlur = function(firstName) {
+    console.log('onBlur', firstName);
+  }
 
 });
 wtfTodo.controller('aboutController', function($scope){
   $scope.message = 'WTF todo is developed by stromworks.com';
 });
 
-wtfTodo.controller('todoController', function($scope, $firebase, $routeParams, $location){
+wtfTodo.controller('todoController', function($scope, $firebase, $routeParams, $location, $document){
   $scope.welcome = 'Participants';
   $scope.todoMessage = 'One of us is ';
   $scope.model = {
     id: $routeParams.id
   }
+
   var ref = new Firebase('https://wtf-todo.firebaseio.com/data/'+$routeParams.id);
   var sync = $firebase(ref);
   $scope.todos = sync.$asObject();
+
+  $scope.onFocus = function(){
+
+  }
+
   $scope.newParticipant = function(participant) {
     if(participant !== undefined) {
       part = $scope.todos.participants;
@@ -87,7 +96,6 @@ wtfTodo.controller('todoController', function($scope, $firebase, $routeParams, $
       $scope.action = $scope.todos.todo;
       $scope.todos.$save().then(function(ref){
         console.log('result calculated and saved, the chosen was');
-        //$scope.todoAction = '';
       });
     });
   }

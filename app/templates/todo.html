@@ -2,7 +2,6 @@
   <h3>{{welcome}}</h3>
   <div ng-repeat="(key, part) in todos.participants track by $index" class="col-xs-12 col-sm-6">
     <span ng-class="isLast($last)" ng-model="participant">{{part}}</span>
-    <!--<input type="text" name="participant" data-id="{{key}}" ng-model="participant" placeholder="{{part}}" ng-class="isLast($last)" />-->
     <a class="button" ng-click="removeParticipant(part, key)">
       <span class="fa-stack">
         <i class="fa fa-square fa-stack-2x"></i>
@@ -11,7 +10,7 @@
     </a>
   </div>
   <div class="col-xs-12 col-sm-6" ng-hide="showInput">
-    <input type="text" name="newPart" ng-model="newPart" placeholder="...">
+    <input type="text" name="newPart" ng-focus="onFocus()" ng-blur="newParticipant(newPart)" ng-model="newPart" placeholder="...">
     <a class="button" ng-click="newParticipant(newPart)">
       <span class="fa-stack fa-2x">
         <i class="fa fa-square fa-stack-2x"></i>
@@ -23,19 +22,5 @@
 
 
 <div class="add-participant col-xs-12">
-  <button type="button" ng-click="todoDone()">What are you guys doing?</button>
-</div>
-
-<div class="action-wrapper col-xs-12 col-sm-8 col-sm-offset-2" ng-show="showInput">
-  <h3>{{todoMessage}}</h3>
-  <textarea name="todoAction" id="todoAction" cols="60" rows="4" ng-model="todoAction">... (e.g. getting coffee for everyone)</textarea>
-  <div class="col-xs-12">
-    <button type="button" class="col-xs-4 col-xs-offset-4" ng-click="showResult = !showResult; result(todoAction)">
-      Find out who!
-    </button>
-  </div>
-</div>
-
-<div class="col-xs-12 col-sm-8 col-sm-offset-2" ng-if="todos.chosen.length">
-  <h1>{{chosen}} is {{action}}</h1>
+  <button id="next" type="button" ng-click="todoDone()">What are you guys doing?</button>
 </div>
