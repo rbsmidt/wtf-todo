@@ -96,3 +96,17 @@ textarea {
   background: rgba(255, 255, 255, 0.98);
   height: 100%;
 }
+
+/* line 91, ../sass/main.scss */
+.action-parts:after {
+  content: ', ';
+}
+
+/* line 95, ../sass/main.scss */
+.action-parts:last-child:before {
+  content: ' and ';
+}
+/* line 98, ../sass/main.scss */
+.action-parts:last-child:after {
+  content: '';
+}

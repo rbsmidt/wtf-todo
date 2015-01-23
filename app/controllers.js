@@ -23,8 +23,8 @@ wtfTodo.controller('aboutController', function($scope){
   $scope.message = 'WTF todo is developed by stromworks.com';
 });
 
-wtfTodo.controller('todoController', function($scope, $firebase, $routeParams){
-  $scope.welcome = 'We are ';
+wtfTodo.controller('todoController', function($scope, $firebase, $routeParams, $location){
+  $scope.welcome = 'Participants';
   $scope.todoMessage = 'One of us is ';
   $scope.model = {
     id: $routeParams.id
@@ -92,21 +92,48 @@ wtfTodo.controller('todoController', function($scope, $firebase, $routeParams){
     });
   }
 
+  $scope.todoDone = function(ref) {
+    var id = $routeParams.id;
+    console.log('id', id);
+    $location.url('/'+id+'/action/');
+  }
+
 });
 
-wtfTodo.controller('actionController', function($scope, $firebase, $routeParams){
+wtfTodo.controller('actionController', function($scope, $firebase, $routeParams, $location){
+  $scope.welcome = 'We are';
+  $scope.action = 'One of us is'
   $scope.model = {
     id: $routeParams.id
   }
   var ref = new Firebase('https://wtf-todo.firebaseio.com/data/'+$routeParams.id);
   var sync = $firebase(ref);
+  $scope.todos = sync.$asObject();
 
+  $scope.result = function(todoAction) {
+    console.log('todo action:', todoAction);
+    $scope.todos.todo = todoAction;
+    $scope.todos.$save().then(function(ref){
+      var length = $scope.todos.participants.length;
+      participants = $scope.todos.participants;
+      $scope.chosen = participants[Math.floor(Math.random()*length)];
+      $scope.todos.chosen = $scope.chosen;
+      $scope.action = $scope.todos.todo;
+      $scope.todos.$save().then(function(ref){
+        var id = $routeParams.id;
+        $location.url('/'+id+'/result');
+        console.log('result calculated and saved, the chosen was');
+      });
+    });
+  }
 });
 wtfTodo.controller('resultController', function($scope, $firebase, $routeParams){
+  $scope.welcome = 'We are';
   $scope.model = {
     id: $routeParams.id
   }
   var ref = new Firebase('https://wtf-todo.firebaseio.com/data/'+$routeParams.id);
   var sync = $firebase(ref);
-  
+  $scope.todos = sync.$asObject(ref);
+
 });

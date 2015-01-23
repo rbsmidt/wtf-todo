@@ -88,3 +88,14 @@ textarea {
   height: 100%;
   //min-height: 300px;
 }
+.action-parts:after {
+  content: ', ';
+}
+.action-parts:last-child {
+  &:before {
+    content: ' and ';
+  }
+  &:after {
+    content: '';
+  }
+}

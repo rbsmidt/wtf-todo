@@ -1,9 +1,10 @@
 <div class="participant-wrapper col-xs-12 col-sm-8 col-sm-offset-2">
   <h3>{{welcome}}</h3>
   <div ng-repeat="(key, part) in todos.participants track by $index" class="col-xs-12 col-sm-6">
-    <input type="text" name="participant" data-id="{{key}}" ng-model="participant" placeholder="{{part}}" ng-class="isLast($last)" />
+    <span ng-class="isLast($last)" ng-model="participant">{{part}}</span>
+    <!--<input type="text" name="participant" data-id="{{key}}" ng-model="participant" placeholder="{{part}}" ng-class="isLast($last)" />-->
     <a class="button" ng-click="removeParticipant(part, key)">
-      <span class="fa-stack fa-2x">
+      <span class="fa-stack">
         <i class="fa fa-square fa-stack-2x"></i>
         <i class="fa fa-minus fa-stack-1x fa-inverse"></i>
       </span>
@@ -21,8 +22,8 @@
 </div>
 
 
-<div class="add-participant col-xs-12" ng-hide="showInput">
-  <button type="button" ng-click="showInput = !showInput">Next</button>
+<div class="add-participant col-xs-12">
+  <button type="button" ng-click="todoDone()">What are you guys doing?</button>
 </div>
 
 <div class="action-wrapper col-xs-12 col-sm-8 col-sm-offset-2" ng-show="showInput">
